@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="page">
+        <section class="recommendation-card">
+            <p class="eyebrow">Find your next favourite</p>
+            <h1>Netflix Recommendation System</h1>
+            <p class="intro">Choose your preferences and receive a title recommendation.</p>
+
+            <form method="post">
+                <label for="content_type">Content type</label>
+                <select id="content_type" name="content_type" required>
+                    <option value="">Choose movie or series</option>
+                    {% for item in content_types %}
+                        <option value="{{ item }}" {% if selections.content_type == item %}selected{% endif %}>{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="genre">Genre</label>
+                <select id="genre" name="genre" required>
+                    <option value="">Choose a genre</option>
+                    {% for item in genres %}
+                        <option value="{{ item }}" {% if selections.genre == item %}selected{% endif %}>{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="language">Language</label>
+                <select id="language" name="language" required>
+                    <option value="">Choose a language</option>
+                    {% for item in languages %}
+                        <option value="{{ item }}" {% if selections.language == item %}selected{% endif %}>{{ item }}</option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit">Recommend a title</button>
+            </form>
+
+            {% if error %}
+                <p class="message error" role="alert">{{ error }}</p>
+            {% endif %}
+
+            {% if recommendations is not none %}
+                <section class="results" aria-live="polite">
+                    <h2>Your recommendation</h2>
+                    {% if recommendations %}
+                        {% for item in recommendations %}
+                            <article class="title-result">
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.type }} &bull; {{ item.genre }} &bull; {{ item.language }}</p>
+                            </article>
+                        {% endfor %}
+                    {% else %}
+                        <p>No matching titles were found.</p>
+                    {% endif %}
+                </section>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>
