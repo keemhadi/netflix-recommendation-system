@@ -53,7 +53,6 @@ python -m unittest discover -s tests -v
 - `templates/` - web page template
 - `static/` - web page styling
 - `docs/` - assignment notes and supporting documentation
-- `evidence/screenshots/` - screenshots of code, output, and Git history
 - `tests/` - automated tests for recommendations and invalid input
 
 ## Development approach

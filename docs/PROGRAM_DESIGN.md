@@ -34,7 +34,7 @@ Automated versions of these cases are stored in `tests/test_main.py` and `tests/
 
 ## Evidence for the report
 
-Save screenshots of the following in `evidence/screenshots/`:
+Insert screenshots of the following directly into the final PDF report:
 
 1. The source code in `main.py` and `data.py`.
 2. A successful recommendation in the console.
